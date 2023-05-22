@@ -1,5 +1,12 @@
 const weekDayElements = document.querySelector(".weekDays");
 const highTempElements = document.querySelectorAll(".hiTemp");
+const lowTempElements = document.querySelectorAll(".loTemp");
+const weatherEmblems = document.querySelectorAll(".weatherEmblem");
+
+//current
+const location = document.getElementById("location");
+const timeElement = document.getElementById("time");
+const currentTemp = document.getElementById("temp");
 
 async function getForecast() {
   const location = "greenville sc";
@@ -20,14 +27,24 @@ function fillWeather(forecastData) {
   //need an array of the days nodelist
   //for the max temp  forecast.forecastday[0].day.maxtemp_f and lowo temp
   //ill need the forecast data
-
-  // for (const day in highTempElements) {
-  //   highTempElements[day].textContent = forecastData.forecast.forecastday[day].day.maxtemp_f;
-  // }
-  for (let i = 0; i < highTempElements.length; i++) {
+  //maxtemp_  mintemp_(c or f)
+  for (let i = 0; i < 7; i++) {
     highTempElements[i].textContent =
       forecastData.forecast.forecastday[i].day.maxtemp_f;
+    lowTempElements[i].textContent =
+      forecastData.forecast.forecastday[i].day.mintemp_f;
+    weatherEmblems[i].src =
+      forecastData.forecast.forecastday[i].day.condition.icon;
   }
 }
 
-export { getForecast, fillWeather };
+function fillCurrent(forecastData) {
+  let today = new Date();
+  let time = today.getHours() + ":" + today.getMinutes();
+
+  location.textContent =
+    forecastData.location.name + "," + forecastData.location.region;
+  timeElement.textContent = time;
+  temp.textContent = forecastData.current.temp_f+`°`+"";
+}
+export { getForecast, fillWeather, fillCurrent };

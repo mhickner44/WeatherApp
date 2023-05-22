@@ -1,9 +1,10 @@
 import "./style.css";
 import "./styleReset.css";
-import { fillWeather, getForecast } from "./weather";
+import { fillWeather, getForecast ,fillCurrent} from "./weather";
 
 async function weatherUpdates() {
   let weekForcast = await getForecast();
+  fillCurrent(weekForcast)
   fillWeather(weekForcast);
 }
 
