@@ -1,15 +1,18 @@
 import "./style.css";
+import "./styleReset.css";
+import { fillWeather, getForecast } from "./weather";
 
-
-function component() {
-  const element = document.createElement("div");
-
-  element.innerHTML = "Hello webpack i made a change another change";
-  element.classList.add("hello");
-
-  
-
-  return element;
+async function weatherUpdates() {
+  let weekForcast = await getForecast();
+  fillWeather(weekForcast);
 }
 
-document.body.appendChild(component());
+weatherUpdates();
+
+// async function component() {
+//   const element = document.createElement("div");
+
+//   return element;
+// }
+
+// document.body.appendChild(component());
