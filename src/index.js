@@ -1,6 +1,7 @@
 import "./style.css";
 import "./styleReset.css";
 import { fillWeather, getForecast, fillCurrent } from "./weather";
+import { weekDay } from "./helper";
 
 const submitSearch = document.getElementById("searchSubmit");
 const searchText=document.getElementById("searchText");
@@ -10,6 +11,7 @@ async function weatherUpdates(searchedCity) {
   let weekForcast = await getForecast(searchedCity);
   fillCurrent(weekForcast);
   fillWeather(weekForcast);
+ 
 }
 
 function search() {
@@ -28,6 +30,10 @@ searchText.addEventListener("keypress", function (event) {
     submitSearch.click();
   }
 });
+
+
+weekDay();
+
 
 
 

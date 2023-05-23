@@ -1,3 +1,5 @@
+
+
 const weekDayElements = document.querySelector(".weekDays");
 const highTempElements = document.querySelectorAll(".hiTemp");
 const lowTempElements = document.querySelectorAll(".loTemp");
@@ -39,12 +41,14 @@ function fillWeather(forecastData) {
 }
 
 function fillCurrent(forecastData) {
-  let today = new Date();
-  let time = today.getHours() + ":" + today.getMinutes();
 
   location.textContent =
     forecastData.location.name + "," + forecastData.location.region;
   timeElement.textContent = time;
   temp.textContent = forecastData.current.temp_f+`°`+"";
+
+  
 }
+
+
 export { getForecast, fillWeather, fillCurrent };
