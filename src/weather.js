@@ -8,8 +8,8 @@ const location = document.getElementById("location");
 const timeElement = document.getElementById("time");
 const currentTemp = document.getElementById("temp");
 
-async function getForecast() {
-  const location = "greenville sc";
+async function getForecast(location) {
+
 
   const response = await fetch(
     `https://api.weatherapi.com/v1/forecast.json?key=f5992c820565482cb30225158231305&q=${location}&days=7`,
