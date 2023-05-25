@@ -129,7 +129,7 @@ body {
     }
   
     .toggle .labels::after {
-      content: attr(data-off);
+      content: attr(C°);
       position: absolute;
       right: 5px;
       color: #4d4d4d;
@@ -139,7 +139,7 @@ body {
     }
   
     .toggle .labels::before {
-      content: attr(data-on);
+      content: attr(F°);
       position: absolute;
       left: 5px;
       color: #ffffff;
