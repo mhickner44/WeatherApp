@@ -14,12 +14,13 @@ const weatherEmblems = document.querySelectorAll(".weatherEmblem");
 //current
 const location = document.getElementById("location");
 const timeElement = document.getElementById("time");
-const currentTemp = document.getElementById("temp");
+
 
 const tempToggle = document.getElementById("tempToggle");
 const weatherChoice = document.querySelector(".labels");
 
-let degreeChoice;
+
+
 
 async function getForecast(location) {
   const response = await fetch(
@@ -35,52 +36,39 @@ async function getForecast(location) {
 }
 
 function fillWeather(forecastData) {
-  //need an array of the days nodelist
-  //for the max temp  forecast.forecastday[0].day.maxtemp_f and lowo temp
-  //ill need the forecast data
-  //maxtemp_  mintemp_(c or f)
-  if (weatherChoice.dataset.choice == "F") {
-    for (let i = 0; i < 7; i++) {
-      highTempElements[i].textContent =
-        forecastData.forecast.forecastday[i].day.maxtemp_f;
-      lowTempElements[i].textContent =
-        forecastData.forecast.forecastday[i].day.mintemp_f;
-      weatherEmblems[i].src =
-        forecastData.forecast.forecastday[i].day.condition.icon;
-    }
-  } else {
-    for (let i = 0; i < 7; i++) {
-      highTempElements[i].textContent =
-        forecastData.forecast.forecastday[i].day.maxtemp_c;
-      lowTempElements[i].textContent =
-        forecastData.forecast.forecastday[i].day.mintemp_c;
-      weatherEmblems[i].src =
-        forecastData.forecast.forecastday[i].day.condition.icon;
-    }
+  for (let i = 0; i < 7; i++) {
+    highTempElementsF[i].textContent =
+      forecastData.forecast.forecastday[i].day.maxtemp_f;
+    lowTempElementsF[i].textContent =
+      forecastData.forecast.forecastday[i].day.mintemp_f;
+    weatherEmblems[i].src =
+      forecastData.forecast.forecastday[i].day.condition.icon;
+
+    highTempElementsC[i].textContent =
+      forecastData.forecast.forecastday[i].day.maxtemp_c;
+    lowTempElementsC[i].textContent =
+      forecastData.forecast.forecastday[i].day.mintemp_c;
+    weatherEmblems[i].src =
+      forecastData.forecast.forecastday[i].day.condition.icon;
   }
 }
 
 function fillCurrent(forecastData) {
-  // this is how you get the data attribute for the degree unit changer
-  // weatherChoice.getAttribute('data-on')
-  //how do I know which one is selected
-
-  if (weatherChoice.dataset.choice == "F") {
-    temp.textContent = forecastData.current.temp_f + `°`;
-  } else {
-    temp.textContent = forecastData.current.temp_c + `°`;
-  }
+  tempC.textContent = forecastData.current.temp_c + `°`;
+  tempF.textContent = forecastData.current.temp_f + `°`;
 
   location.textContent =
     forecastData.location.name + "," + forecastData.location.region;
-  timeElement.textContent = time;
+
+    let date = new Date();
+  timeElement.textContent = date.getHours()+":"+date.getMinutes();
 }
 
 tempToggle.addEventListener("change", function (event) {
   if (tempToggle.checked == false) {
     weatherChoice.dataset.choice = "F";
-    tempF.hidden=false;
-    tempC.hidden=true;
+    tempF.hidden = false;
+    tempC.hidden = true;
     for (let i = 0; i < 7; i++) {
       highTempElementsF[i].hidden = false;
       lowTempElementsF[i].hidden = false;
@@ -90,8 +78,8 @@ tempToggle.addEventListener("change", function (event) {
     }
   } else {
     weatherChoice.dataset.choice = "C";
-    tempF.hidden=true;
-    tempC.hidden=false;
+    tempF.hidden = true;
+    tempC.hidden = false;
 
     for (let i = 0; i < 7; i++) {
       highTempElementsF[i].hidden = true;
@@ -101,7 +89,7 @@ tempToggle.addEventListener("change", function (event) {
       lowTempElementsC[i].hidden = false;
     }
   }
-  //toggle view of c or f elements below
+ 
 });
 
 export { getForecast, fillWeather, fillCurrent };
