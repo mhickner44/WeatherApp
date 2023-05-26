@@ -1,3 +1,5 @@
+
+
 const weekDayElements = document.querySelector(".weekDays");
 
 const highTempElementsC = document.querySelectorAll(".hiTempC");

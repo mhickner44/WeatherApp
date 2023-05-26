@@ -2,21 +2,24 @@ import "./style.css";
 import "./styleReset.css";
 import { fillWeather, getForecast, fillCurrent } from "./weather";
 import { weekDay } from "./helper";
+import {display} from "./imageBackground.js"
 
 const submitSearch = document.getElementById("searchSubmit");
 const searchText=document.getElementById("searchText");
-let city;
+
+let data;
 
 async function weatherUpdates(searchedCity) {
-  let weekForcast = await getForecast(searchedCity);
-  fillCurrent(weekForcast);
-  fillWeather(weekForcast);
+   data = await getForecast(searchedCity);
+  fillCurrent(data);
+  fillWeather(data);
  
 }
 
-function search() {
-  city = document.getElementById("searchText").value;
-  weatherUpdates(city);
+async function search() {
+ let city = document.getElementById("searchText").value;
+ await  weatherUpdates(city);
+  display(data);
 }
 
 submitSearch.addEventListener("click",  search);
