@@ -1,5 +1,7 @@
 import { getRandomInt } from "./helper";
 
+
+
 async function getPhotoOptions(city, region, lat, long) {
   const response = await fetch(
     `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8e3ea4a055365f6a76658fc96ea5115c&format=json&nojsoncallback=1&text=${city} ${region} cityscape&lat=${lat}&long=${long}&has_geo=1`
@@ -31,11 +33,15 @@ async function getHighRes(id) {
 
   //array of sizes
   let sizeOptions = sizesData.sizes.size;
-
+let url =  sizeOptions[sizeOptions.length - 1].source;
   console.log(
     "this returns your hi res image " +
-      sizeOptions[sizeOptions.length - 1].source
+      url
   );
+
+  document.body.style.backgroundImage = `url(${url})`;
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundPosition = "center";
 }
 
 async function display(info) {

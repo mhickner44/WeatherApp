@@ -3,6 +3,11 @@ let dayElements = document.querySelectorAll(".date");
 const weekDays = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 let currentDate = new Date();
 
+//default 
+
+
+
+
 function weekDay() {
   for (let i = 0; i < 7; i++) {
     let day = new Date(currentDate.getTime() + i * 24 * 60 * 60 * 1000);
@@ -14,5 +19,8 @@ function weekDay() {
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
+
+
+
 
 export { weekDay, getRandomInt};
