@@ -18,11 +18,14 @@ const timeElement = document.getElementById("time");
 const tempToggle = document.getElementById("tempToggle");
 const weatherChoice = document.querySelector(".labels");
 
+
+
 async function getForecast(location) {
   let response = null;
+  
   try {
     response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=f5992c820565482cb30225158231305&q=${location}&days=7`,
+      `https://api.weatherapi.com/v1/forecast.json?key=f5992c820565482cb30225158231305&q=${location}&days=3`,
       {
         mode: "cors",
       }
@@ -50,7 +53,7 @@ async function getForecast(location) {
 }
 
 function fillWeather(forecastData) {
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 3; i++) {
     highTempElementsF[i].textContent =
       forecastData.forecast.forecastday[i].day.maxtemp_f + "°";
     lowTempElementsF[i].textContent =
@@ -83,7 +86,7 @@ tempToggle.addEventListener("change", function (event) {
     weatherChoice.dataset.choice = "F";
     tempF.hidden = false;
     tempC.hidden = true;
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 3; i++) {
       highTempElementsF[i].hidden = false;
       lowTempElementsF[i].hidden = false;
 
@@ -95,7 +98,7 @@ tempToggle.addEventListener("change", function (event) {
     tempF.hidden = true;
     tempC.hidden = false;
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 3; i++) {
       highTempElementsF[i].hidden = true;
       lowTempElementsF[i].hidden = true;
 
