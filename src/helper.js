@@ -50,7 +50,10 @@ async function locationGranted(returnLocation) {
 }
 
 function locationDenied() {
-  console.log("fuk you");
+initialLocation="new york"
+  searchBar.value =initialLocation;
+  search();
+  searchBar.value="";
 }
 
 export {

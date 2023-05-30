@@ -18,6 +18,7 @@ const timeElement = document.getElementById("time");
 const tempToggle = document.getElementById("tempToggle");
 const weatherChoice = document.querySelector(".labels");
 
+const currentWeatherImage= document.getElementById("currentWeatherImg");
 
 
 async function getForecast(location) {
@@ -79,6 +80,7 @@ function fillCurrent(forecastData) {
 
   let date = new Date();
   timeElement.textContent = date.getHours() + ":" + date.getMinutes();
+  currentWeatherImage.src=forecastData.current.condition.icon;
 }
 
 tempToggle.addEventListener("change", function (event) {

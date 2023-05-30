@@ -1,43 +1,41 @@
 import { getRandomInt } from "./helper";
-
-
-
-async function getPhotoOptions(city, region, lat, long) {
+import clear from "./skyImages/clearSky.jpg"
+import clouds from "./skyImages/Cloudy.jpg"
+import rainy from "./skyImages/rainy.jpg"
+import snow from "./skyImages/snow.jpg"
+async function getPhotoOptions(city, region, lat, long, weatherStatus) {
   const response = await fetch(
-    `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8e3ea4a055365f6a76658fc96ea5115c&format=json&nojsoncallback=1&text=${city} ${region} cityscape&lat=${lat}&long=${long}&has_geo=1`
+    `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8e3ea4a055365f6a76658fc96ea5115c&format=json&nojsoncallback=1&text=${city} ${region} skyline&lat=${lat}&long=${long}&has_geo=1`
   );
 
   const data = await response.json();
   console.log(data);
-  let max;
-  if (data.photos.photo.length > 25) {
-    max = 25;
+  let photoId;
+  if (data.photos.pages == 0) {
+    photoId = weatherStatus;
   } else {
-    max = data.photos.photo.length;
+    
+    let max = 5;
+    let rand = getRandomInt(max);
+    console.log(rand);
+     photoId = data.photos.photo[rand].id;
   }
-
-  let rand = getRandomInt(max);
-  console.log(rand);
-  let photoId = data.photos.photo[rand].id;
 
   return photoId;
 }
 
 async function getHighRes(id) {
   const availableSizes = await fetch(
-    `https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=8e3ea4a055365f6a76658fc96ea5115c&format=json&nojsoncallback=1&photo_id=${id}`
-    , {mode: 'cors'}
+    `https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=8e3ea4a055365f6a76658fc96ea5115c&format=json&nojsoncallback=1&photo_id=${id}`,
+    { mode: "cors" }
   );
 
   const sizesData = await availableSizes.json();
 
   //array of sizes
   let sizeOptions = sizesData.sizes.size;
-let url =  sizeOptions[sizeOptions.length - 1].source;
-  console.log(
-    "this returns your hi res image " +
-      url
-  );
+  let url = sizeOptions[sizeOptions.length - 1].source;
+  console.log("this returns your hi res image " + url);
 
   document.body.style.backgroundImage = `url(${url})`;
   document.body.style.backgroundSize = "cover";
@@ -49,9 +47,33 @@ async function display(info) {
   let region = info.location.region;
   let lat = info.location.lat;
   let long = info.location.lon;
+  let weatherStatus = info.current.condition.text;
 
-  let id = await getPhotoOptions(city, region, lat, long);
-  await getHighRes(id);
+  let id = await getPhotoOptions(city, region, lat, long, weatherStatus);
+
+
+  const rain = ["rain","drizzle",]
+  const cloudy = ["cloudy","overcast"]
+  let imageChoice;
+//if it doesnt contain numbers
+  if (/^([^0-9]*)$/.test(id)) {
+    if(rain.some(el=> weatherStatus.includes(el))){
+  imageChoice = rainy;
+    }else if(cloudy.some(el=> weatherStatus.includes(el))){
+      imageChoice=clouds;
+    }else if(weatherStatus.includes("snow")){
+      imageChoice=snow;
+    }else{
+      imageChoice=clear;
+    }
+    document.body.style.backgroundImage = `url(${imageChoice})`;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+  }
+  
+  else {
+    await getHighRes(id);
+  }
 }
 
 export { display };
