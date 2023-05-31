@@ -1,6 +1,6 @@
 
 body {
-  background: lightblue;
+  background-color: lightblue;
   
 
   font-family: montserrat, sans-serif;
@@ -8,8 +8,50 @@ body {
   font-weight: 700;
   color: white;
   mix-blend-mode: luminosity;
-
+  
+ 
 }
+
+
+.loaderWrapper{
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+ 
+
+ 
+}
+
+
+/* ----------https://github.com/vineethtrv --https://github.com/vineethtrv/css-loader ------------------------------------------- */
+.loader {
+  margin: auto;
+  width: 5em;
+  height: 5em;
+  border: 5px solid #FFF;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  }
+
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+  } 
+/* ------------------------------------------------------- */
 
 .wrapper{
   display: grid;
@@ -71,8 +113,7 @@ h2 {
   text-align: center;
 }
 
-.weatherIconImg {
-}
+
 
 #location {
   grid-column: 1 / 3;
@@ -80,6 +121,7 @@ h2 {
 }
 
 .toggle {
+  
   --width: 55px;
   --height: 30px;
 

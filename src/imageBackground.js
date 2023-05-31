@@ -3,6 +3,11 @@ import clear from "./skyImages/clearSky.jpg"
 import clouds from "./skyImages/Cloudy.jpg"
 import rainy from "./skyImages/rainy.jpg"
 import snow from "./skyImages/snow.jpg"
+
+
+const loadingSymbol = document.querySelector(".loaderWrapper");
+
+
 async function getPhotoOptions(city, region, lat, long, weatherStatus) {
   const response = await fetch(
     `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8e3ea4a055365f6a76658fc96ea5115c&format=json&nojsoncallback=1&text=${city} ${region} skyline&lat=${lat}&long=${long}&has_geo=1`
@@ -15,7 +20,7 @@ async function getPhotoOptions(city, region, lat, long, weatherStatus) {
     photoId = weatherStatus;
   } else {
     
-    let max = 5;
+    let max = data.photos.photo.length;
     let rand = getRandomInt(max);
     console.log(rand);
      photoId = data.photos.photo[rand].id;
@@ -70,10 +75,13 @@ async function display(info) {
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
   }
-  
   else {
     await getHighRes(id);
   }
+  loadingSymbol.style.display='none';
+
+  
+
 }
 
 export { display };

@@ -7,6 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"><script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script>
  </head>
     <body>
+    
+
+    <div class="loaderWrapper">
+      <span class="loader"></span>
+    </div>
       <div class="wrapper">
         
         <div class="topContainer">
@@ -22,7 +27,7 @@
             <div class="weatherIconImg"><img id="currentWeatherImg"></div>
         </div>
         <div class="search">
-          <input type="text" id="searchText"  placeholder="Search a location"></input>
+          <input type="text" id="searchText"  placeholder="Search a location" minlength="2" ></input>
           <button type="button" id="searchSubmit" >Search</button>
         </div>
         
@@ -63,6 +68,10 @@
               <h2 class="hiTempC" hidden>-</h2>
             </div>
          </div>
-      </div>
+      
+        </div>
+  
+
+   
   </body>
 </html> 

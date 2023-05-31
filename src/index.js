@@ -5,10 +5,14 @@ import { weekDay } from "./helper";
 import { display } from "./imageBackground.js";
 import { getLocation } from "./helper";
 
+
 const submitSearch = document.getElementById("searchSubmit");
 const searchText = document.getElementById("searchText");
 const body = document.querySelector(".body");
 let data;
+
+const loadingSymbol = document.querySelector(".loaderWrapper");
+
 
 async function weatherUpdates(searchedCity) {
   data = await getForecast(searchedCity);
@@ -17,13 +21,20 @@ async function weatherUpdates(searchedCity) {
 }
 
 async function search() {
+
+  loadingSymbol.style.display='block';
+
   let city = document.getElementById("searchText").value;
   await weatherUpdates(city);
   display(data);
+  
   document.getElementById("searchText").value = "";
 }
 
 submitSearch.addEventListener("click", search);
+
+
+
 
 searchText.addEventListener("keypress", function (event) {
   // If the user presses the "Enter" key on the keyboard
