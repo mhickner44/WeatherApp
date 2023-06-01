@@ -14,8 +14,14 @@ const loadingSymbol = document.querySelector(".loaderWrapper");
 
 async function weatherUpdates(searchedCity) {
   data = await getForecast(searchedCity);
-  fillCurrent(data);
-  fillWeather(data);
+  if (data != null) {
+    fillCurrent(data);
+    fillWeather(data);
+    display(data);
+  } else {
+    loadingSymbol.style.display = "none";
+  }
+
 }
 
 async function search() {
@@ -24,7 +30,6 @@ async function search() {
     loadingSymbol.style.display = "block";
     let city = document.getElementById("searchText").value;
     await weatherUpdates(city);
-    display(data);
     document.getElementById("searchText").value = "";
   }
 }

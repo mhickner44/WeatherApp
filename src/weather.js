@@ -37,7 +37,7 @@ async function getForecast(location) {
     }
   } catch (error) {
   
-    return  alert("error");
+    return  alert("Invalid search.Try again.");
   }
 
   let weatherData = await response.json();
