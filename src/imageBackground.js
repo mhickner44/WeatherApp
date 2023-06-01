@@ -14,16 +14,14 @@ async function getPhotoOptions(city, region, lat, long, weatherStatus) {
   );
 
   const data = await response.json();
-  console.log(data);
+ 
   let photoId;
   if (data.photos.pages == 0) {
     photoId = weatherStatus;
   } else {
-    
     let max = data.photos.photo.length;
     let rand = getRandomInt(max);
-    console.log(rand);
-     photoId = data.photos.photo[rand].id;
+    photoId = data.photos.photo[rand].id;
   }
 
   return photoId;
@@ -40,7 +38,7 @@ async function getHighRes(id) {
   //array of sizes
   let sizeOptions = sizesData.sizes.size;
   let url = sizeOptions[sizeOptions.length - 1].source;
-  console.log("this returns your hi res image " + url);
+ 
 
   document.body.style.backgroundImage = `url(${url})`;
   document.body.style.backgroundSize = "cover";
@@ -60,7 +58,7 @@ async function display(info) {
   const rain = ["rain","drizzle",]
   const cloudy = ["cloudy","overcast"]
   let imageChoice;
-//if it doesnt contain numbers
+
   if (/^([^0-9]*)$/.test(id)) {
     if(rain.some(el=> weatherStatus.includes(el))){
   imageChoice = rainy;

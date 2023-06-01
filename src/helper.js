@@ -43,7 +43,6 @@ async function locationGranted(returnLocation) {
     "," +
     data.results[0].address_components[5].short_name;
 
-  // weatherUpdates(initialLocation);
   searchBar.value =initialLocation;
   search();
   searchBar.value="";

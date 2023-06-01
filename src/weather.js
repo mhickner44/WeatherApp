@@ -1,4 +1,4 @@
-const weekDayElements = document.querySelector(".weekDays");
+
 
 const highTempElementsC = document.querySelectorAll(".hiTempC");
 const lowTempElementsC = document.querySelectorAll(".loTempC");
@@ -36,19 +36,11 @@ async function getForecast(location) {
       throw new error;
     }
   } catch (error) {
-    console.log("error");
+  
     return  alert("error");
   }
 
-
-  console.log(response);
-
   let weatherData = await response.json();
-  // if(weatherData.error=!null){
-  // throw error;
-  // }
-
-  console.log(weatherData);
 
   return weatherData;
 }
