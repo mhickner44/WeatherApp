@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Weather App</title>
+    <link rel="icon" href="./cloud.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><script defer src="runtime.bundle.js"></script><script defer src="main.bundle.js"></script>
+ </head>
+    <body>
+    
+
+    <div class="loaderWrapper">
+      <span class="loader"></span>
+    </div>
+      <div class="wrapper">
+        
+        <div class="topContainer">
+            <h1 id="location">------,--</h1>
+            <h1 id="time">-:--PM</h1>
+            <h1 id="tempC" hidden>C&deg;</h1>
+            <h1 id="tempF">F&deg;</h1>
+            <label class="toggle">
+              <input type="checkbox" id="tempToggle"/>
+              <span class="slider"></span>
+              <span class="labels" data-choice="F"  ></span>
+            </label>
+            <div class="weatherIconImg"><img id="currentWeatherImg"></div>
+        </div>
+        <div class="search">
+          <input type="text" id="searchText"  placeholder="Search a location"  required></input>
+          <button type="button" id="searchSubmit" >Search</button>
+        </div>
+        
+        <div class="weekDays">
+          <div class="HiLo">
+            <h1 class="date">24</h1>
+            <img src="" alt="weather icon" class="weatherEmblem"/>
+            <div class="tempContainer">
+              <h2>LO</h2>
+              <h2>HI</h2>
+              <h2  class="loTempF" >F</h2>
+              <h2  class="loTempC" hidden>C</h2>
+              <h2 class="hiTempF">-</h2>
+              <h2 class="hiTempC" hidden>-</h2>
+            </div>
+          </div>
+          <div class="HiLo">
+            <h1 class="date">24</h1>
+            <img src="" alt="weather icon" class="weatherEmblem" />
+            <div class="tempContainer">
+              <h2>LO</h2>
+              <h2>HI</h2>
+              <h2  class="loTempF" >F</h2>
+              <h2  class="loTempC" hidden>C</h2>
+              <h2 class="hiTempF">-</h2>
+              <h2 class="hiTempC" hidden>-</h2>
+            </div>
+          </div>
+          <div class="HiLo">
+            <h1 class="date">24</h1>
+            <img src="" alt="weather icon"  class="weatherEmblem"/>
+            <div class="tempContainer">
+              <h2>LO</h2>
+              <h2>HI</h2>
+              <h2  class="loTempF" >F</h2>
+              <h2  class="loTempC" hidden>C</h2>
+              <h2 class="hiTempF">-</h2>
+              <h2 class="hiTempC" hidden>-</h2>
+            </div>
+         </div>
+      
+        </div>
+  
+
+   
+  </body>
+</html> 
