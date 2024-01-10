@@ -29,23 +29,28 @@ function getLocation() {
 import { search } from "./index.js";
 let searchBar = document.getElementById("searchText");
 
+
 async function locationGranted(returnLocation) {
-  let position =
-    returnLocation.coords.latitude + "," + returnLocation.coords.longitude;
-  let response = await fetch(
-    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position}&key=AIzaSyC6PkkTeKAD1zWH5lpVHY47Ywrxhi9jKaY`,
-    { mode: "cors" }
-  );
+ //USES GOOGLE API TO FIND NAME OF CITY OF CURRENT LOCATION to get background image
 
-  let data = await response.json();
-  initialLocation =
-    data.results[0].address_components[3].long_name +
-    "," +
-    data.results[0].address_components[5].short_name;
+  // let position =
+  //   returnLocation.coords.latitude + "," + returnLocation.coords.longitude;
+  // let response = await fetch(
+  //   `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position}&key=AIzaSyC6PkkTeKAD1zWH5lpVHY47Ywrxhi9jKaY`,
+  //   { mode: "cors" }
+  // );
 
-  searchBar.value =initialLocation;
-  search();
-  searchBar.value="";
+  // let data = await response.json();
+  // initialLocation =
+  //   data.results[0].address_components[3].long_name +
+  //   "," +
+  //   data.results[0].address_components[5].short_name;
+
+  // searchBar.value =initialLocation;
+  // search();
+  // searchBar.value="";
+ 
+  locationDenied()
 }
 
 function locationDenied() {
